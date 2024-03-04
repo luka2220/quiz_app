@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/quiz_difficulty.dart';
+import 'package:quiz_app/quiz_categories.dart';
 import 'package:quiz_app/start_screen.dart';
+import './models/quiz_model.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -10,6 +11,9 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  // Quiz model to be used in QuizDifficultyScreen and QuizCategoryScreen
+  final QuizQuestionsModel questionsModel = QuizQuestionsModel();
+
   // Storing the StartScreen widget in a variable
   var activeScreen = 'start-screen';
 
@@ -26,9 +30,9 @@ class _QuizState extends State<Quiz> {
 
     if (activeScreen == 'start-screen') {
       screenWidget = StartScreen(switchScreen);
-    } else if (activeScreen == 'difficulty-screen') {
-      screenWidget = QuizDifficultyScreen(switchScreen);
-    } else if (activeScreen == 'quiz-screen') {
+    } else if (activeScreen == 'categories-screen') {
+      screenWidget = QuizCategoryScreen(this.questionsModel, switchScreen);
+    } else if (activeScreen == 'quiz-difficulty-screen') {
       
     }
 
