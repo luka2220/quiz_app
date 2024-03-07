@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import './models/quiz_model.dart';
+import 'package:quiz_app/models/quiz_model.dart';
 
-class QuizCategoryScreen extends StatefulWidget {
-  const QuizCategoryScreen(this.questionsModel, this.switchScreen, {super.key});
+class QuizCategoryScreen extends StatelessWidget {
+  // Constructor initialized it's super constructor passing the key widget parameter to the super class
+  const QuizCategoryScreen(this.questionsModel, this.switchScreen, {Key? key})
+      : super(key: key);
 
   final QuizQuestionsModel questionsModel;
   final void Function(String screen) switchScreen;
 
-  @override
-  State<QuizCategoryScreen> createState() => _QuizCategoryScreenState();
-}
-
-class _QuizCategoryScreenState extends State<QuizCategoryScreen> {
   void setCategoryType(int numCategory) {
-    widget.questionsModel.setCategory(numCategory);
+    questionsModel.setCategory(numCategory);
+    switchScreen("quiz-difficulty-screen");
   }
 
   @override
@@ -28,7 +26,7 @@ class _QuizCategoryScreenState extends State<QuizCategoryScreen> {
             padding: const EdgeInsets.only(top: 80, left: 30),
             child: Column(children: [
               IconButton(
-                onPressed: () => widget.switchScreen("start-screen"),
+                onPressed: () => switchScreen("start-screen"),
                 icon: const Icon(
                   Icons.arrow_back_ios,
                   color: Colors.white,
